@@ -2,23 +2,40 @@
 
 export default function Recipe(props) {
     return(
-        <div style={{width:'500px'}}>
-            <h2>{props.title}</h2>
-            <p>featured in {props.featured}</p>
-            <p>Ready in {props.time} minutes</p>
-            <img src={props.imgSorce} alt={props.title} />
-            <h3>Ingredients</h3>
-            <ul>
+        <div className="recipeCard">
+            
+                <h2>{props.title}</h2>
+                <p className="feat">Featured in {props.featured}</p>
+                <p className="cuisine">Cuisine: {props.cuisine}</p>
+                <p className="meal">Meal type: {props.meal}</p>
+                <p className="dish">Dish type: {props.dish}</p>
                 {
-                    props.ingredients.map( (ingredient) => {
-                        return (
-                            <li>{ingredient}</li>
-                        )
-                        
-                    })
+                    props.time > 0
+                    ? <p className="time">Ready in {props.time} minutes</p>
+                    : <br />
                 }
-            </ul>
-            <a href={`${props.url}`}>Full recipe here</a>
+
+                <div className="imageContainer">
+                    <img src={props.imgSorce} alt={props.title} />
+                </div>
+                <div className="ingredientsContainer">
+                    <h3>Ingredients</h3>
+                    <ul>
+                        {
+                            props.ingredients.map( (ingredient) => {
+                                return (
+                                    <li>{ingredient}</li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
+
+                    <div className="link">
+                        <a href={`${props.url}`}>Full recipe here</a>
+                    </div>
+
+
         </div>
     )
 }
