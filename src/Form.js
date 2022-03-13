@@ -40,34 +40,21 @@ export default function Form(props) {
             <div className="flexContainer">
                 <form onSubmit={ (e) => props.handleSubmit(e, form)}>
                 {/* {Object.keys(this.dietLabels.dietTypes.filter((x)=> {this.dietLabels.dietTypes[x]}))} */}
-                    <label htmlFor="searchItem">Search recipes</label>
-                    <input
-                        type="text"
-                        name="searchItem"
-                        id="searchItem"
-                        onChange={handleInputChange}
-                        value={form.searchItem}
-                        />
+                    <div className="searchBar">
+                        <label htmlFor="searchItem" className="sr-only">Search recipes</label>
+                        <input
+                            type="text"
+                            name="searchItem"
+                            id="searchItem"
+                            onChange={handleInputChange}
+                            value={form.searchItem}
+                            placeholder="search recipes"
+                            />
+                        <button>Search</button>
+                    </div>
 
-                    <br />
-                    <label htmlFor="mealType">Meal type: </label>
-                    <select
-                        name="mealType"
-                        id="mealType"
-                        onChange={handleSelectChange}
-                        value={form.mealType}
-                        >
-                        <option value="anytime">Anytime</option>
-                        <option value="Breakfast">Breakfast</option>
-                        <option value="Lunch">Lunch</option>
-                        <option value="Dinner">Dinner</option>
-                        <option value="Snack">Snack</option>
-                        <option value="Teatime">Teatime</option>
-                    </select>
-
-
-                    <p>Diet type: </p>
-                    <div className="dietType">
+                    <div className="filter">
+                    <p>Filters </p>
                         <input
                             type="checkbox"
                             name="balanced"
@@ -116,8 +103,24 @@ export default function Form(props) {
                             value="low-sodium"
                         />
                         <label htmlFor="lowSodium">Low-sodium</label>
+
+                    <label htmlFor="mealType" className="sr-only">Meal type: </label>
+                    <select
+                        name="mealType"
+                        id="mealType"
+                        onChange={handleSelectChange}
+                        value={form.mealType}
+                        >
+                        <option value="anytime">Anytime</option>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Dinner">Dinner</option>
+                        <option value="Snack">Snack</option>
+                        <option value="Teatime">Teatime</option>
+                    </select>
                     </div>
-                    <button>Submit</button>
+
+
                 </form>
             </div>
         </div>

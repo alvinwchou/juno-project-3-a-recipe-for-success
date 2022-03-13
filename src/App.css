@@ -60,7 +60,7 @@ h3 {
 
 
 
-p {
+p, a, button, input, label, select {
   font-family: 'Comfortaa', cursive;
   font-weight: 700;
   font-size: 1rem;
@@ -78,6 +78,7 @@ p {
   padding-left: 400px;
   background-color: aliceblue;
   margin-left: auto;
+  min-height: 100vh;
 }
 
 .apiCall {
@@ -106,7 +107,6 @@ p {
 
   max-width: 400px;
   background-color: #f4f4f4;
-  background-image: linear-gradient(90deg, #f4f4f4, #79dcf1);
   background-image: url(../public/header-background.jpg);
   background-repeat: no-repeat;
   background-position: bottom center;
@@ -123,6 +123,7 @@ p {
 
 .header .title h1 {
   background-color: rgba(94, 211, 26, 0.342);
+  background-color: rgba(112, 130, 62, 0.747);
 }
 
 /* Form.js */
@@ -134,12 +135,14 @@ p {
   margin: 0 auto;
   border-radius: 10px;
   background-color: rgb(206, 219, 198);
+  background-color: rgb(224, 180, 74);
 }
 
 .search .flexContainer {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1rem 0;
 }
 
 .search .flexContainer form {
@@ -147,17 +150,53 @@ p {
   height: 50%;
 }
 
-.search .flexContainer form label {
-  /* display: block; */
+.search .searchBar {
+  background-color: white;
+  border-radius: 10px;
+  border: 0.5 solid black;
 }
 
-.dietType {
-  border: 25px solid darkolivegreen;
+.search .searchBar input {
+  /* display: inline-block; */
+  width: calc(65% - 10px);
+  margin: 5px;
+  padding: 0 5px;
+  border: none;
+  text-align: center;
+}
+.search .searchBar button {
+  /* display: inline-block; */
+  cursor: pointer;
+  width: calc(35% - 5px);
+  border-radius: 15px;
+  margin-right: 5px;
 }
 
-.dietType label {
+.filter {
+  border: 10px solid darkolivegreen;
+  padding: 0.5rem 0.5rem; 
+  border-radius: 20px;
+  margin-top: 1rem;
+}
+
+.filter p:first-child {
+  text-align: center;
+} 
+
+
+
+.filter label {
   display: inline-block;
+  padding: 0 0.2rem;
+  margin: 0.4rem;
 }
+
+.filter select {
+  display: block;
+  margin: 0 auto;
+  margin-top: 0.4rem;
+}
+
 
 /* GalleryItem.js */
 .galleryLi {
@@ -173,18 +212,29 @@ p {
 
 
 /* Recipe.js  */
+.recipeContainer {
+  /* padding: 50px; */
+
+}
+
 .recipe {
-  padding: 50px;
   /* width: 100%; */
   /* margin: 0 auto; */
+  padding: 25px;
+  margin: 25px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px 0px #000000;
   background-color: rgb(231, 233, 219);
+  background-color: rgb(243, 234, 216);
   display: grid;
-  grid-template-areas: "h h h h h h"
+  grid-template-areas: "b h h h h y"
                        "f f f f f f"
                        "c c m m d d"  
                        "l l l t t t"
                        "p p p i i i"
-                       "x x x i i i";
+                       "p p p i i i"
+                       "s s s i i i"
+                       "z z z i i i";
   grid-template-columns: calc(100%/6 - 15px) calc(100%/6 - 15px) calc(100%/6 - 15px) calc(100%/6 - 15px) calc(100%/6 - 15px) calc(100%/6 - 15px) ;
   gap: 18px;
   overflow-y: 'auto',
@@ -221,26 +271,51 @@ p {
   text-align: center;
 }
 
+.recipe .back {
+  grid-area: b;
+}
+
+.recipe .save {
+  grid-area: s;
+}
+
 .recipe .imageContainer {
   grid-area: p;
   display: flex;
   justify-content: center;
+  padding-top: 30px;
 }
 
 .recipe .imageContainer img{
-  width: 50%;
+  width: 60%;
 }
 
 .recipe .ingredientsContainer {
   grid-area: i;
   width: 90%;
-  padding-right: 30px;
+  /* padding-right: 30px; */
   border: 1px solid red;
 }
 
 .recipe .ingredientsContainer ul {
+  background-color: rgb(134, 108, 90);
+  border-radius: 15px;
   list-style: square;
   list-style-position: inside;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.recipe .ingredientsContainer li {
+  margin: 0.5rem;
+}
+
+.recipe .caps {
+  text-transform: capitalize;
+}
+
+.back p {
+  display: inline-block;
 }
 
 *{border: 0.2px solid red}

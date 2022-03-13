@@ -51,6 +51,7 @@ export default function ApiCall(props) {
             }).then( (apiData) => {
                 console.log(apiData);
                 setRecipes(apiData.data.hits)
+                setShowRECIPE(true)
                 console.log(recipes);
             }).catch( (err) => {
                 console.log(err);
@@ -62,70 +63,15 @@ export default function ApiCall(props) {
     const { height, width } = useWindowDimensions();
     console.log(height);
 
-    const getDisplay = (e) => {
-        // setDisplay(!display)
+    const getClickedItemInfo = (e) => {
         console.log('APICALL DISPLAY???? ', display);
         console.log(e);
-        console.log(e.target.parentElement.childNodes[1].innerText);
         setDisplay(e.target.parentElement.id)
-        console.log(e.target.parentElement)
-        console.log(e.target.parentElement.getBoundingClientRect())
-        const rect = e.target.parentElement.getBoundingClientRect()
-        // console.log(rect);
-        // // setPosition({rect})
-        // // console.log(position);
-        // // console.log(position.startingPoints);
-        // // console.log(position.startingPoints.top);
-        // // setPosition( {startingPoints: {top: rect.top, bottom: height - rect.bottom, left: rect.left, right: width - rect.right}} )
-        // console.log(showRecipe.top)
-        // setShowRecipe( { ...showRecipe, top: `${rect.top}px` } )
-        // // setShowRecipe( { ...showRecipe, bottom: `${height}px` - `${rect.bottom}px` } )
-        // console.log(showRecipe)
-        // // setShowRecipe( { ...showRecipe, left: `${rect.left}px` } )
-        // // setShowRecipe( { ...showRecipe, right: `${width}px` - `${rect.right}px` } )
-        // console.log(showRecipe)
-        // // console.log(position.startingPoints.top);
-
-
-        // setShowRecipeBg(!showRecipeBg)
-
-        // setShowRecipe({
-        //     position: 'fixed', 
-        //     top: `${rect.top}px`,
-        //     height: `${e.target.parentElement.clientHeight}px`,
-        //     left: `${rect.left}px`,
-        //     width: `${e.target.parentElement.clientWidth}px`,
-        //     // width: '33vw',
-        //     overflow: 'hidden',
-        //     overflowy: 'auto',
-        //     // backgroundColor: "rgba(170, 238, 196, 0.692)",
-        //     zIndex: '-1',
-        //     opacity: 0,
-            
-        // })
-
-        // setTimeout(() => {
-        //     setShowRecipe({
-        //         position: 'fixed', 
-        //         width: '80vw',
-        //         height: '80vh',
-        //         top: '10%',
-        //         left: '10%',
-        //         overflow: 'hidden',
-        //         backgroundColor: "rgba(170, 238, 196, 0.692)",
-        //         zIndex: '10',
-        //         opacity: '1',
-        //         transition: 'all 0.6s linear',
-        //         overflowY: 'auto',
-        //     })
-        // }, 100);
-
         setShowRECIPE(!showRECIPE)
-        console.log('IMGAGE LOG', showRECIPE);
     };
 
     
-    const handleClick = (e) => {
+    const getBackClick = (e) => {
         setShowRECIPE(!showRECIPE)
     };
 
@@ -141,7 +87,7 @@ export default function ApiCall(props) {
                             
                             return(
                                 <GalleryItem
-                                    handleButton={ getDisplay }
+                                    handleButton={ getClickedItemInfo }
                                     imgSource={recipe.recipe.image}
                                     title={recipe.recipe.label}
                                     id={recipe.recipe.url}
@@ -151,7 +97,7 @@ export default function ApiCall(props) {
                         })
                     }
                 </ul>
-                : <div className="recipeCard"    onClick={ handleClick }>
+                : <div className="recipeCard">
                     {
                         recipes.map( (recipe) => {
                             return(
@@ -166,6 +112,7 @@ export default function ApiCall(props) {
                                     cuisine={recipe.recipe.cuisineType}
                                     meal={recipe.recipe.mealType}
                                     dish={recipe.recipe.dishType}
+                                    getBackClick={ getBackClick }
                                 />
                                 : null
                             )
