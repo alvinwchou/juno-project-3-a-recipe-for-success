@@ -4,7 +4,7 @@ export default function Recipe(props) {
     return(
         <div className="recipeCard">
             
-                <h2>{props.title}</h2>
+                <h3>{props.title}</h3>
                 <p className="feat">Featured in {props.featured}</p>
                 <p className="cuisine">Cuisine: {props.cuisine}</p>
                 <p className="meal">Meal type: {props.meal}</p>

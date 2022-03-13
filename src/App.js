@@ -4,6 +4,8 @@ import { useState } from "react";
 
 import './App.css';
 
+// import './assets/css/fonts.css'
+
 function App() {
   const [searchParams, setSearhParams] = useState(null);
   console.log(searchParams);
@@ -16,9 +18,14 @@ function App() {
   };
 
   return (
-    <div>
-      <Form handleSubmit={getSearchParams}/>
-      <ApiCall params={searchParams}/>
+    <div className="app">
+      <div className="header">
+        <Form handleSubmit={getSearchParams}/>
+      </div>
+      <div className="mainSection">
+        <h1>A Recipe for Success</h1>
+        <ApiCall params={searchParams}/>
+      </div>
 
     </div>
   );
