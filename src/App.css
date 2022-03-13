@@ -35,7 +35,8 @@ font-family: 'Dancing Script', cursive;
 font-weight: 700;
 font-size: 4rem;
 text-align: center;
-margin: 5rem 0;
+line-height: 4rem;
+
 }
 
 h2 {
@@ -52,6 +53,8 @@ h3 {
   font-size: 1.75rem;
   /* padding: 0px; */
   text-decoration: underline black 0.2rem;
+  text-align: center;
+  line-height: 2rem;
 }
 
 
@@ -71,9 +74,8 @@ p {
 
 
 /* ApiCall.js */
-.mainSection {
-  padding-left: 350px;
-  
+.main {
+  padding-left: 400px;
   background-color: aliceblue;
   margin-left: auto;
 }
@@ -95,50 +97,49 @@ p {
   margin-top: 2rem;
 }
 
-.apiCall .true {
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-}
-
-.apiCall .false {
-  /* right: 100% */
-}
 
 
 
-/* Form.js */
+
+/* header */
 .header {
-  width: 30%;
-  max-width: 350px;
+
+  max-width: 400px;
   background-color: #f4f4f4;
   background-image: linear-gradient(90deg, #f4f4f4, #79dcf1);
   background-image: url(../public/header-background.jpg);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: cover;
   position: fixed;
   top: 0;
   bottom: 0;
-
 }
+
+.header .title {
+  /* background-color: green; */
+  height: 300px;
+}
+
+.header .title h1 {
+  background-color: rgba(94, 211, 26, 0.342);
+}
+
+/* Form.js */
 .search{
   /* display: flex; */
-  box-shadow: 5px 0px 0px 0px rgba(0,0,0,0.38);
+  /* box-shadow: 5px 0px 0px 0px rgba(0,0,0,0.38); */
+  border: 2px solid yellow;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: rgb(206, 219, 198);
 }
 
 .search .flexContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  /* position: fixed; */
-  /* top: 50%; */
-  /* left: ; */
-  /* transform: translate(0%, -50%); */
-  /* width: 90%; */
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* position: relative; */
 }
 
 .search .flexContainer form {
@@ -172,7 +173,7 @@ p {
 
 
 /* Recipe.js  */
-.recipeCard {
+.recipe {
   padding: 50px;
   /* width: 100%; */
   /* margin: 0 auto; */
@@ -184,61 +185,62 @@ p {
                        "l l l t t t"
                        "p p p i i i"
                        "x x x i i i";
-  grid-template-columns: calc(100%/6) calc(100%/6) calc(100%/6) calc(100%/6) calc(100%/6) calc(100%/6) ;
-  gap: 20px;
+  grid-template-columns: calc(100%/6 - 15px) calc(100%/6 - 15px) calc(100%/6 - 15px) calc(100%/6 - 15px) calc(100%/6 - 15px) calc(100%/6 - 15px) ;
+  gap: 18px;
   overflow-y: 'auto',
 }
 
-.recipeCard > h3 {
+.recipe > h3 {
   grid-area: h;
   text-align: center;
 }
 
-.recipeCard .feat {
+.recipe .feat {
   grid-area: f;
   text-align: center;
 }
 
-.recipeCard .cuisine {
+.recipe .cuisine {
   grid-area: c;
 }
 
-.recipeCard .meal {
+.recipe .meal {
   grid-area: m;
 }
 
-.recipeCard .dish {
+.recipe .dish {
   grid-area: d;
 }
 
-.recipeCard .time {
+.recipe .time {
   grid-area: t;
 }
 
-.recipeCard .link {
+.recipe .link {
   grid-area: l;
   text-align: center;
 }
 
-.recipeCard .imageContainer {
+.recipe .imageContainer {
   grid-area: p;
   display: flex;
   justify-content: center;
 }
 
-.recipeCard .imageContainer img{
+.recipe .imageContainer img{
   width: 50%;
 }
 
-.recipeCard .ingredientsContainer {
+.recipe .ingredientsContainer {
   grid-area: i;
   width: 90%;
   padding-right: 30px;
   border: 1px solid red;
 }
 
-.recipeCard .ingredientsContainer ul {
+.recipe .ingredientsContainer ul {
   list-style: square;
   list-style-position: inside;
 }
 
+*{border: 0.2px solid red}

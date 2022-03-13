@@ -20,10 +20,12 @@ function App() {
   return (
     <div className="app">
       <div className="header">
+        <div className="title">
+          <h1>A Recipe for Success</h1>
+        </div>
         <Form handleSubmit={getSearchParams}/>
       </div>
-      <div className="mainSection">
-        <h1>A Recipe for Success</h1>
+      <div className="main">
         <ApiCall params={searchParams}/>
       </div>
 
