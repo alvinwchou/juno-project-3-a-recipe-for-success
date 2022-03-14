@@ -4,38 +4,22 @@ import { useState, useEffect } from 'react';
 import GalleryItem from './GalleryItem';
 import Recipe from './Recipe';
 import useWindowDimensions from './useWindowDimensions';
+import ErrorMessage from './ErrorMessage';
 
 export default function ApiCall(props) {
     const [recipes, setRecipes] = useState([]);
-    console.log(props.params);
-    // console.log(props.params.searchItem);
 
-    // const [position, setPosition] = useState({startingPoints: {top: 0, bottom: 0, left: 0, right: 0}});
-    // console.log(position)   ;
+    // toggle between searched recipe and each recipe
+    const [showRecipe, setShowRecipe] = useState(true);
 
-    const [showRECIPE, setShowRECIPE] = useState(true)
-
-
-
-    // // inital styling for recipe popup
-    // const [showRecipe, setShowRecipe] = useState({
-    //     // position: 'fixed', 
-    //     // top: '0',
-    //     // height: '0',
-    //     // left: '0',
-    //     // width: '0',
-    //     // // maxWidth:'500px',
-    //     // overflow: 'hidden',
-    //     // backgroundColor: "rgba(170, 238, 196, 0.692)",
-    //     // zIndex: '-1',
-    //     display: 'none'
-    // })
-    // console.log(showRecipe)
+    // show more button
+    const [showMore, setShowMore] = useState(null);
 
     // toggle between false and true class styling
-    const [showRecipeBg, setShowRecipeBg] = useState(false)
+    const [error, setError] = useState(false);
 
     useEffect( () => {
+        // console.log(props.params.searchItem);
         setTimeout( () => {
             console.log('timeout');
             axios({
@@ -50,13 +34,24 @@ export default function ApiCall(props) {
                 },
             }).then( (apiData) => {
                 console.log(apiData);
+                console.log(apiData.data._links.next.href);
                 setRecipes(apiData.data.hits)
-                setShowRECIPE(true)
+                setShowRecipe(true)
+                setShowMore(apiData.data._links.next.href)
+                console.log(showMore);
+                console.log('tesssssssssssssst');
                 console.log(recipes);
             }).catch( (err) => {
-                console.log(err);
+                setError(true);
+                alert(err)
+                axios({
+                    url: 'https://api.edamam.com/api/recipes/v2?type=public&app_id=12a553b5&app_key=6243134e8b4229cae7ecfea70b2a1bb1&diet=balanced&random=true'
+                }).then( (apiData) => {
+                    setRecipes(apiData.data.hits)
+                    setShowRecipe(true)
+                })
             })
-        }, 100)
+        }, 10)
     }, [props]);
 
     const [display, setDisplay] = useState(null);
@@ -67,36 +62,66 @@ export default function ApiCall(props) {
         console.log('APICALL DISPLAY???? ', display);
         console.log(e);
         setDisplay(e.target.parentElement.id)
-        setShowRECIPE(!showRECIPE)
+        setShowRecipe(!showRecipe)
     };
 
     
     const getBackClick = (e) => {
-        setShowRECIPE(!showRECIPE)
+        setShowRecipe(!showRecipe)
     };
+
+    const handleClick = () => {
+        console.log('clicked');
+        axios({
+                url: showMore
+            }).then( (apiData) => {
+                setRecipes(apiData.data.hits)
+                setShowRecipe(true)
+                if (apiData.data._links.next.href){
+                    setShowMore(apiData.data._links.next.href)
+                } else {
+                    setShowMore(null)
+                }
+            }).catch( (err) => {
+                console.log(err);
+            })
+    }
+
+    const handleClickError = () => {
+        setError(false)
+    }
 
     return(
         <div className='apiCall'> 
+            {
+                error ? <ErrorMessage handleClick={ handleClickError }/>: null
+            }
             <h2>Searched Recipes</h2>
             {   
-                showRECIPE 
-                ? <ul className="galleryWall">
+                showRecipe 
+                ? <div className="galleryContainer">
+                    <ul className="galleryWall">
+                        {
+                            recipes.map( (recipe) => {
+                                // console.log(recipe)
+                    
+                                return(
+                                    <GalleryItem
+                                        handleButton={ getClickedItemInfo }
+                                        imgSource={recipe.recipe.image}
+                                        title={recipe.recipe.label}
+                                        id={recipe.recipe.url}
+                                        // cuisineType={recipe.recipe.cuisineType}
+                                    />
+                                )
+                            })
+                        }
+                    </ul>
                     {
-                        recipes.map( (recipe) => {
-                            // console.log(recipe)
-                            
-                            return(
-                                <GalleryItem
-                                    handleButton={ getClickedItemInfo }
-                                    imgSource={recipe.recipe.image}
-                                    title={recipe.recipe.label}
-                                    id={recipe.recipe.url}
-                                    // cuisineType={recipe.recipe.cuisineType}
-                                />
-                            )
-                        })
+                    showMore ? <p onClick={ handleClick }>More</p> : null
                     }
-                </ul>
+                    {/* <p onClick={ handleClick }> {recipes ? 'more': ''}</p> */}
+                </div>
                 : <div className="recipeCard">
                     {
                         recipes.map( (recipe) => {

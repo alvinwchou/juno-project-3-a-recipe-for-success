@@ -318,4 +318,18 @@ p, a, button, input, label, select {
   display: inline-block;
 }
 
+
+/* ErrorMessage.js */
+.errorMessage {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.errorMessage .mesageContainer {
+  background-color: red;
+}
+
 *{border: 0.2px solid red}
