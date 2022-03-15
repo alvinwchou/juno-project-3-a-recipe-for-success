@@ -8,16 +8,32 @@ export default function Form(props) {
     // user inputs
     const [form, setform] = useState({});
 
-    // for window dimensions
-    const { height, width } = useWindowDimensions();
+    // checkboxes
+    // const [check, setCkeck] = useState({
+    //     balanced: {checked: false},
+    //     highFiber: {checked: false},
+    //     highProtein: {checked: false},
+    //     lowCarb: {checked: false},
+    //     lowFat: {checked: false},
+    //     lowSodium: {checked: false},
+    // });
 
-    // show filter
+    // show filter true or false
     const [showFilter, setShowFilter] = useState(false)
     
+    // input text
     const handleInputChange = (e) => {
         setform({ ...form, searchItem: e.target.value });
     };
     
+    // input checkbox
+    // const handleInputCheckbox = (e) => {
+    //     setCkeck({ ...check, [e.target.name]: {value: e.target.value, checked: !check[e.target.name].checked}})
+    //     // setCkeck({ ...check, [e.target.value]: {checked: !check.balanced}})
+    //     console.log(check);
+    // }
+
+    // select
     const handleSelectChange = (e) => {
         console.log(e.target.value);
         if (e.target.value === 'anytime') {
@@ -27,11 +43,14 @@ export default function Form(props) {
         };
     };
 
+    // submit
     const handleSearchSubmit = (e) => {
         props.handleSubmit(e, form);
+        console.log(form);
         setform({ ...form, searchItem: '' });
     };
 
+    // show/hide filter options
     const handleClick = () => {
         setShowFilter(!showFilter);
     };
@@ -68,8 +87,9 @@ export default function Form(props) {
                                             type="checkbox"
                                             name="balanced"
                                             id="balanced"
-                                            // onChange={handleCheck}
+                                            // onChange={ handleInputCheckbox }
                                             value="balanced"
+                                            // checked={check.balanced.checked}
                                         />
                                         <label htmlFor="balanced">Balanced</label>
                                     </div>
@@ -78,7 +98,9 @@ export default function Form(props) {
                                             type="checkbox"
                                             name="highFiber"
                                             id="highFiber"
+                                            // onChange={ handleInputCheckbox }
                                             value="high-fiber"
+                                            // checked={check.highFiber.checked}
                                         />
                                         <label htmlFor="highFiber">High-fiber</label>
                                     </div>
@@ -87,7 +109,9 @@ export default function Form(props) {
                                             type="checkbox"
                                             name="highProtein"
                                             id="highProtein"
+                                            // onChange={ handleInputCheckbox }
                                             value="high-protein"
+                                            // checked={check.highProtein.checked}
                                         />
                                         <label htmlFor="highProtein">High-protein</label>
                                     </div>
@@ -96,7 +120,9 @@ export default function Form(props) {
                                             type="checkbox"
                                             name="lowCarb"
                                             id="lowCarb"
+                                            // onChange={ handleInputCheckbox }
                                             value="low-carb"
+                                            // checked={check.lowCarb.checked}
                                         />
                                         <label htmlFor="lowCarb">Low-carb</label>
                                     </div>
@@ -105,7 +131,9 @@ export default function Form(props) {
                                             type="checkbox"
                                             name="lowFat"
                                             id="lowFat"
+                                            // onChange={ handleInputCheckbox }
                                             value="low-fat"
+                                            // checked={check.lowFat.checked}
                                         />
                                         <label htmlFor="lowFat">Low-fat</label>
                                     </div>
@@ -114,7 +142,9 @@ export default function Form(props) {
                                             type="checkbox"
                                             name="lowSodium"
                                             id="lowSodium"
+                                            // onChange={ handleInputCheckbox }
                                             value="low-sodium"
+                                            // checked={check.lowSodium.checked}
                                         />
                                         <label htmlFor="lowSodium">Low-sodium</label>
                                     </div>

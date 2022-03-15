@@ -4,7 +4,7 @@ import useWindowDimensions from './useWindowDimensions';
 
 export default function Recipe(props) {
 
-    const { height, width } = useWindowDimensions();
+    const { width } = useWindowDimensions();
 
     return(
         <div className="recipeContainer">

@@ -3,15 +3,6 @@ import { useState } from "react"
 
 
 export default function GalleryItem(props) {
-    // console.log(props);
-    // const [showDetail, setShowDetail] = useState(false);
-    // console.log('showDetail  ', showDetail);
-
-    // function handleClick(e) {
-    //     // setShowDetail(!showDetail);
-    //     props.handleButton(e);
-    // };
-
     return(
         <li className="galleryLi">
             <button id={props.id} onClick={ (e) => props.handleButton(e) }>

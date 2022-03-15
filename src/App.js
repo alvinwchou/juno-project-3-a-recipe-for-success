@@ -6,7 +6,7 @@ import './App.css';
 
 
 function App() {
-  const [searchParams, setSearhParams] = useState(null);
+  const [searchParams, setSearhParams] = useState({});
   console.log(searchParams);
 
   const getSearchParams = (e, filter) => {
@@ -14,6 +14,7 @@ function App() {
     console.log(filter);
     setSearhParams(filter);
     console.log(searchParams);
+    // setSearhParams({...searchParams, dietType: null})
   };
 
   return (
