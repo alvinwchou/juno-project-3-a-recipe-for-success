@@ -1,11 +1,22 @@
+import useWindowDimensions from './useWindowDimensions';
+
 // Recipe.js
 
 export default function Recipe(props) {
+
+    const { height, width } = useWindowDimensions();
+
     return(
         <div className="recipeContainer">
             <div className="recipe">
                 <div className="back">
-                    <p onClick={ () => props.getBackClick() }>back</p>
+                    <p onClick={ () => props.getBackClick() }>
+                        {
+                            width > 500 
+                            ? 'back'
+                            : '<'
+                        }
+                    </p>
                 </div>
             
                 <h3>{props.title}</h3>

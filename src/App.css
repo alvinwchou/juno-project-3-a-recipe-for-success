@@ -359,7 +359,6 @@ p, a, button, input, label, select, option {
   justify-content: space-evenly ;
   padding: 0 50px;
   background-color: rgba(134, 108, 90, 0.747);
-
 }
 
 .mesageContainer .textContainer h2 {
@@ -384,7 +383,7 @@ p, a, button, input, label, select, option {
     position: relative;
     background-image: url(../public/header-background.jpg);
     background-repeat: no-repeat;
-    background-position: bottom center;
+    background-position: top center;
     background-size: cover;
 
   }
@@ -396,6 +395,10 @@ p, a, button, input, label, select, option {
   /* form */
   .search{
     margin-bottom: 2rem;
+  }
+
+  .filter p{
+    cursor: pointer;
   }
 
   .checkBoxes{
@@ -433,19 +436,44 @@ p, a, button, input, label, select, option {
 
 @media (max-width: 690px) {
   /* GalleryItem.js */
-  p {
+  p , a {
     font-size: 0.7rem;
   }
 
+  /* Recipe.js */
+  .recipe{
+    border: 5px solid green;
+    grid-template-areas: "b h h h h y"
+                         "f f f f f f"
+                         "c c c m m m"
+                         "t t t d d d"
+                         "p p p p p p"
+                         "p p p p p p"
+                         "l l l s s s"
+                         "i i i i i i";
+  }
+
+  .recipe .save {
+    text-align: center; 
+}
+
+  .recipe .ingredientsContainer {
+    margin: 0 auto;
+}
 }
 
 @media (max-width: 600px) {
+  /* Forms.js */
   .checkBoxes .options {
     width: 100%;
   }
 }
 
 @media (max-width: 520px) {
+  h3 {
+    font-size: 1rem;
+  }
+
   h2 {
     font-size: 1.5rem;
   }
@@ -454,6 +482,16 @@ p, a, button, input, label, select, option {
     width: calc(100%/3);
     height: 200px;
   }
+
+  /* Error.js */
+  .mesageContainer .textContainer {
+  height: 55%;
+}
+
+.mesageContainer .textContainer p {
+  padding: 0 20px;
+}
+
 }
 
 

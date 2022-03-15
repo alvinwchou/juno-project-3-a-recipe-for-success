@@ -20,6 +20,8 @@ export default function ApiCall(props) {
     
 
     const [display, setDisplay] = useState(null);
+
+    // for window dimensions
     const { height, width } = useWindowDimensions();
     
     useEffect( () => {
@@ -40,7 +42,6 @@ export default function ApiCall(props) {
                 setShowMore(apiData.data._links.next.href)
             }).catch( (err) => {
                 setError(true);
-                alert(err)
                 axios({
                     url: 'https://api.edamam.com/api/recipes/v2?type=public&app_id=12a553b5&app_key=6243134e8b4229cae7ecfea70b2a1bb1&diet=balanced&random=true'
                 }).then( (apiData) => {

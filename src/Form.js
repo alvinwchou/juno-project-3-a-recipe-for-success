@@ -1,10 +1,19 @@
 // Form.js
+import useWindowDimensions from './useWindowDimensions';
+
+
 import { useState } from "react"
 
 export default function Form(props) {
-    // const initalValue = {searchItem: "chicken"};
+    // user inputs
     const [form, setform] = useState({});
 
+    // for window dimensions
+    const { height, width } = useWindowDimensions();
+
+    // show filter
+    const [showFilter, setShowFilter] = useState(false)
+    
     const handleInputChange = (e) => {
         setform({ ...form, searchItem: e.target.value });
     };
@@ -21,6 +30,10 @@ export default function Form(props) {
     const handleSearchSubmit = (e) => {
         props.handleSubmit(e, form);
         setform({ ...form, searchItem: '' });
+    };
+
+    const handleClick = () => {
+        setShowFilter(!showFilter);
     };
 
     return(
@@ -41,84 +54,91 @@ export default function Form(props) {
                     </div>
 
                     <div className="filter">
-                        <p>Filters </p>
-                        <div className="checkBoxes">
-                            <div className="options">
-                                <input
-                                    type="checkbox"
-                                    name="balanced"
-                                    id="balanced"
-                                    // onChange={handleCheck}
-                                    value="balanced"
-                                />
-                                <label htmlFor="balanced">Balanced</label>
+                        {
+                            showFilter
+                                ? <p onClick={ handleClick }>↑ Filters ↑</p>
+                                : <p onClick={ handleClick }>↓ Filters ↓</p>
+                        }
+                        {
+                            showFilter
+                            ? <div className="filterContainer">
+                                <div className="checkBoxes">
+                                    <div className="options">
+                                        <input
+                                            type="checkbox"
+                                            name="balanced"
+                                            id="balanced"
+                                            // onChange={handleCheck}
+                                            value="balanced"
+                                        />
+                                        <label htmlFor="balanced">Balanced</label>
+                                    </div>
+                                    <div className="options">
+                                        <input
+                                            type="checkbox"
+                                            name="highFiber"
+                                            id="highFiber"
+                                            value="high-fiber"
+                                        />
+                                        <label htmlFor="highFiber">High-fiber</label>
+                                    </div>
+                                    <div className="options">
+                                        <input
+                                            type="checkbox"
+                                            name="highProtein"
+                                            id="highProtein"
+                                            value="high-protein"
+                                        />
+                                        <label htmlFor="highProtein">High-protein</label>
+                                    </div>
+                                    <div className="options">
+                                        <input
+                                            type="checkbox"
+                                            name="lowCarb"
+                                            id="lowCarb"
+                                            value="low-carb"
+                                        />
+                                        <label htmlFor="lowCarb">Low-carb</label>
+                                    </div>
+                                    <div className="options">
+                                        <input
+                                            type="checkbox"
+                                            name="lowFat"
+                                            id="lowFat"
+                                            value="low-fat"
+                                        />
+                                        <label htmlFor="lowFat">Low-fat</label>
+                                    </div>
+                                    <div className="options">
+                                        <input
+                                            type="checkbox"
+                                            name="lowSodium"
+                                            id="lowSodium"
+                                            value="low-sodium"
+                                        />
+                                        <label htmlFor="lowSodium">Low-sodium</label>
+                                    </div>
+                                </div>
+                                <div className="dropdown">
+                                    <label htmlFor="mealType" className="sr-only">Meal type: </label>
+                                    <select
+                                        name="mealType"
+                                        id="mealType"
+                                        onChange={handleSelectChange}
+                                        value={form.mealType}
+                                        >
+                                        <option value="anytime">Anytime</option>
+                                        <option value="Breakfast">Breakfast</option>
+                                        <option value="Lunch">Lunch</option>
+                                        <option value="Dinner">Dinner</option>
+                                        <option value="Snack">Snack</option>
+                                        <option value="Teatime">Teatime</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div className="options">
-                                <input
-                                    type="checkbox"
-                                    name="highFiber"
-                                    id="highFiber"
-                                    value="high-fiber"
-                                />
-                                <label htmlFor="highFiber">High-fiber</label>
-                            </div>
-                            <div className="options">
-                                <input
-                                    type="checkbox"
-                                    name="highProtein"
-                                    id="highProtein"
-                                    value="high-protein"
-                                />
-                                <label htmlFor="highProtein">High-protein</label>
-                            </div>
+                            : null
+                        }
 
-                            <div className="options">
-                                <input
-                                    type="checkbox"
-                                    name="lowCarb"
-                                    id="lowCarb"
-                                    value="low-carb"
-                                />
-                                <label htmlFor="lowCarb">Low-carb</label>
-                            </div>
-
-                            <div className="options">
-                                <input
-                                    type="checkbox"
-                                    name="lowFat"
-                                    id="lowFat"
-                                    value="low-fat"
-                                />
-                                <label htmlFor="lowFat">Low-fat</label>
-                            </div>
-
-                            <div className="options">
-                                <input
-                                    type="checkbox"
-                                    name="lowSodium"
-                                    id="lowSodium"
-                                    value="low-sodium"
-                                />
-                                <label htmlFor="lowSodium">Low-sodium</label>
-                            </div>
-                        </div>
-
-                        <div className="dropdown">
-                            <label htmlFor="mealType" className="sr-only">Meal type: </label>
-                            <select
-                                name="mealType"
-                                id="mealType"
-                                onChange={handleSelectChange}
-                                value={form.mealType}
-                                >
-                                <option value="anytime">Anytime</option>
-                                <option value="Breakfast">Breakfast</option>
-                                <option value="Lunch">Lunch</option>
-                                <option value="Dinner">Dinner</option>
-                                <option value="Snack">Snack</option>
-                                <option value="Teatime">Teatime</option>
-                            </select>
-                        </div>
                     </div>
 
 
