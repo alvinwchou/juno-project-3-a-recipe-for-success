@@ -8,20 +8,22 @@ import ErrorMessage from './ErrorMessage';
 
 export default function ApiCall(props) {
     const [recipes, setRecipes] = useState([]);
-
+    
     // toggle between searched recipe and each recipe
     const [showRecipe, setShowRecipe] = useState(true);
-
+    
     // show more button
     const [showMore, setShowMore] = useState(null);
-
+    
     // toggle between false and true class styling
     const [error, setError] = useState(false);
+    
 
+    const [display, setDisplay] = useState(null);
+    const { height, width } = useWindowDimensions();
+    
     useEffect( () => {
-        // console.log(props.params.searchItem);
         setTimeout( () => {
-            console.log('timeout');
             axios({
                 url: 'https://api.edamam.com/api/recipes/v2',
                 params: {
@@ -33,14 +35,9 @@ export default function ApiCall(props) {
                 diet: null,
                 },
             }).then( (apiData) => {
-                console.log(apiData);
-                console.log(apiData.data._links.next.href);
                 setRecipes(apiData.data.hits)
                 setShowRecipe(true)
                 setShowMore(apiData.data._links.next.href)
-                console.log(showMore);
-                console.log('tesssssssssssssst');
-                console.log(recipes);
             }).catch( (err) => {
                 setError(true);
                 alert(err)
@@ -54,13 +51,8 @@ export default function ApiCall(props) {
         }, 10)
     }, [props]);
 
-    const [display, setDisplay] = useState(null);
-    const { height, width } = useWindowDimensions();
-    console.log(height);
 
     const getClickedItemInfo = (e) => {
-        console.log('APICALL DISPLAY???? ', display);
-        console.log(e);
         setDisplay(e.target.parentElement.id)
         setShowRecipe(!showRecipe)
     };
@@ -71,7 +63,7 @@ export default function ApiCall(props) {
     };
 
     const handleClick = () => {
-        console.log('clicked');
+        window.scrollTo(0, 0);
         axios({
                 url: showMore
             }).then( (apiData) => {
@@ -83,7 +75,7 @@ export default function ApiCall(props) {
                     setShowMore(null)
                 }
             }).catch( (err) => {
-                console.log(err);
+                setError(true);
             })
     }
 
@@ -103,8 +95,6 @@ export default function ApiCall(props) {
                     <ul className="galleryWall">
                         {
                             recipes.map( (recipe) => {
-                                // console.log(recipe)
-                    
                                 return(
                                     <GalleryItem
                                         handleButton={ getClickedItemInfo }
@@ -118,7 +108,7 @@ export default function ApiCall(props) {
                         }
                     </ul>
                     {
-                    showMore ? <p onClick={ handleClick }>More</p> : null
+                    showMore ? <p className='more' onClick={ handleClick } >More</p> : null
                     }
                     {/* <p onClick={ handleClick }> {recipes ? 'more': ''}</p> */}
                 </div>

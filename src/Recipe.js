@@ -40,7 +40,7 @@ export default function Recipe(props) {
                     </ul>
                 </div>
                 <div className="link">
-                    <a href={`${props.url}`}>Full recipe here</a>
+                    <a href={`${props.url}`}target="_blank">Full recipe here</a>
                 </div>
             
                 <p className="save">Save for later</p>

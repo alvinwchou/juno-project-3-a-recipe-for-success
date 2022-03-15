@@ -4,16 +4,15 @@ import { useState } from "react";
 
 import './App.css';
 
-// import './assets/css/fonts.css'
 
 function App() {
   const [searchParams, setSearhParams] = useState(null);
   console.log(searchParams);
 
-  const getSearchParams = (e, refined) => {
+  const getSearchParams = (e, filter) => {
     e.preventDefault();
-    console.log(refined);
-    setSearhParams(refined);
+    console.log(filter);
+    setSearhParams(filter);
     console.log(searchParams);
   };
 
@@ -28,7 +27,6 @@ function App() {
       <div className="main">
         <ApiCall params={searchParams}/>
       </div>
-
     </div>
   );
 };

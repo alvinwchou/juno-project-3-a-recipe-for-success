@@ -18,6 +18,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 
 html {
     font-size: 125%;
+    background-color: aliceblue;
 }
 
 img {
@@ -46,7 +47,6 @@ h2 {
   padding: 0 15px;
 }
 
-
 h3 {
   font-family: 'Comfortaa', cursive;
   font-weight: 700;
@@ -57,28 +57,18 @@ h3 {
   line-height: 2rem;
 }
 
-
-
-
-p, a, button, input, label, select {
+p, a, button, input, label, select, option {
   font-family: 'Comfortaa', cursive;
   font-weight: 700;
   font-size: 1rem;
-}
-
-/* App.js */
-.app {
-  /* display: flex; */
-  /* justify-content: end; */
 }
 
 
 /* ApiCall.js */
 .main {
   padding-left: 400px;
-  background-color: aliceblue;
   margin-left: auto;
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 
 .apiCall {
@@ -89,7 +79,7 @@ p, a, button, input, label, select {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between  ;
+    justify-content: space-evenly  ;
     padding: 0 5%;
     margin-top: 2rem;
 }
@@ -98,15 +88,19 @@ p, a, button, input, label, select {
   margin-top: 2rem;
 }
 
-
+.apiCall .more {
+  text-align: center;
+  cursor: pointer;
+  font-size: 2rem;
+  text-decoration: underline;
+  margin: 1.5rem;
+}
 
 
 
 /* header */
 .header {
-
-  max-width: 400px;
-  background-color: #f4f4f4;
+  width: 400px;
   background-image: url(../public/header-background.jpg);
   background-repeat: no-repeat;
   background-position: bottom center;
@@ -117,24 +111,21 @@ p, a, button, input, label, select {
 }
 
 .header .title {
-  /* background-color: green; */
   height: 300px;
 }
 
 .header .title h1 {
-  background-color: rgba(94, 211, 26, 0.342);
   background-color: rgba(112, 130, 62, 0.747);
 }
 
+
+
 /* Form.js */
 .search{
-  /* display: flex; */
-  /* box-shadow: 5px 0px 0px 0px rgba(0,0,0,0.38); */
   border: 2px solid yellow;
   width: 80%;
   margin: 0 auto;
   border-radius: 10px;
-  background-color: rgb(206, 219, 198);
   background-color: rgb(224, 180, 74);
 }
 
@@ -157,7 +148,6 @@ p, a, button, input, label, select {
 }
 
 .search .searchBar input {
-  /* display: inline-block; */
   width: calc(65% - 10px);
   margin: 5px;
   padding: 0 5px;
@@ -165,7 +155,6 @@ p, a, button, input, label, select {
   text-align: center;
 }
 .search .searchBar button {
-  /* display: inline-block; */
   cursor: pointer;
   width: calc(35% - 5px);
   border-radius: 15px;
@@ -183,31 +172,38 @@ p, a, button, input, label, select {
   text-align: center;
 } 
 
-
-
 .filter label {
   display: inline-block;
   padding: 0 0.2rem;
   margin: 0.4rem;
+  cursor: pointer;
 }
 
 .filter select {
   display: block;
   margin: 0 auto;
   margin-top: 0.4rem;
+  cursor: pointer;
 }
+
+.filter input {
+  cursor: pointer;
+}
+
 
 
 /* GalleryItem.js */
 .galleryLi {
   width: 15%;
-  min-width: 200px;
+  width: 200px;
   height: 330px;
   padding: 20px;
   display: inline-block;
 }
 
-
+.galleryLi button {
+  cursor: pointer;
+}
 
 
 
@@ -306,7 +302,6 @@ p, a, button, input, label, select {
 .recipe .ingredientsContainer {
   grid-area: i;
   width: 90%;
-  /* padding-right: 30px; */
   border: 1px solid red;
 }
 
@@ -332,6 +327,7 @@ p, a, button, input, label, select {
 }
 
 
+
 /* ErrorMessage.js */
 .errorMessage {
   position: fixed;
@@ -345,7 +341,6 @@ p, a, button, input, label, select {
 }
 
 .errorMessage .mesageContainer {
-  /* background-color: red; */
   width: 800px;
   height: 400px;
   background-image: url(../public/error-bg.jpg);
@@ -353,19 +348,15 @@ p, a, button, input, label, select {
   background-position: center;
   background-size: cover;
   display: flex;
-  /* justify-content: center; */
   align-items: center;
-
+  border: 2px solid black;
 }
 
 .mesageContainer .textContainer {
   display: flex;
   flex-direction: column;
   height: 50%;
-  /* border: 1px solid white; */
   justify-content: space-evenly ;
-  /* align-items: center; */
-  /* margin: 50px 0; */
   padding: 0 50px;
   background-color: rgba(134, 108, 90, 0.747);
 
@@ -373,7 +364,102 @@ p, a, button, input, label, select {
 
 .mesageContainer .textContainer h2 {
   font-family: 'Dancing Script', cursive;
+  font-weight: 700;
   font-size: 3rem;
+  padding-bottom: 1.5rem;
 }
 
+.mesageContainer .textContainer p {
+  padding: 0 50px;
+}
+
+
+
+/* media queries */
+@media (max-width: 1100px) {
+
+  /* header */
+  .header {
+    width: auto;
+    position: relative;
+    background-image: url(../public/header-background.jpg);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+
+  }
+
+  .header .title {
+  height: auto;
+  }
+
+  /* form */
+  .search{
+    margin-bottom: 2rem;
+  }
+
+  .checkBoxes{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .checkBoxes .options {
+    width: calc(100%/3);
+  }
+
+  /* ApiCall.js */
+  .main {
+    padding-left: 0;
+    min-height: auto;
+  }
+
+  /* GalleryItems.js */
+  .galleryLi {
+    width: 20%;
+    height: 250px;
+  }
+}
+
+
+@media (max-width: 850px) {
+  .checkBoxes .options {
+    width: 50%;
+  }
+  .galleryLi {
+    width: 25%;
+    /* height: 250px; */
+  }
+}
+
+@media (max-width: 690px) {
+  /* GalleryItem.js */
+  p {
+    font-size: 0.7rem;
+  }
+
+}
+
+@media (max-width: 600px) {
+  .checkBoxes .options {
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .galleryLi {
+    width: calc(100%/3);
+    height: 200px;
+  }
+}
+
+
+
 *{border: 0.2px solid red}
+
+
+
+
