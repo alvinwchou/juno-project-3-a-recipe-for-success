@@ -6,7 +6,7 @@ export default function ErrorMessage(props) {
             <div className="mesageContainer">
                 <div className="textContainer">
                     <h2>Ooops...</h2>
-                    <p>Sorry, there was a problem with our search. If it is not down, here are some featured recipes!</p>
+                    <p>Sorry, there was a problem with our search, please try again.</p>
                 </div>
             </div>
         </div>

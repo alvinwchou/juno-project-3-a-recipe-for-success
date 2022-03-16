@@ -5,6 +5,8 @@ import GalleryItem from './GalleryItem';
 import Recipe from './Recipe';
 import useWindowDimensions from './useWindowDimensions';
 import ErrorMessage from './ErrorMessage';
+import firebase from './firebase';
+import { getDatabase, ref, onValue, push } from 'firebase/database';
 
 export default function ApiCall(props) {
 
@@ -12,7 +14,9 @@ export default function ApiCall(props) {
     const [recipes, setRecipes] = useState([]);
     
     // toggle between searched recipe and each recipe
-    const [showRecipe, setShowRecipe] = useState(true);
+    const [showRecipeCard, setShowRecipeCard] = useState(false);
+
+    const [showSaved, setShowSaved] = useState(false)
     
     // show more button
     const [showMore, setShowMore] = useState(null);
@@ -20,17 +24,16 @@ export default function ApiCall(props) {
     // toggle between false and true class styling
     const [error, setError] = useState(false);
     
-
+    // get the current recipe user clicked
     const [display, setDisplay] = useState(null);
+
+    // state for saved recipes
+    const [savedRecipes, setSavedRecipes] = useState([]);
 
     // for window dimensions
     const { height, width } = useWindowDimensions();
-    
-    // for (each in props.diet) {
-    //     console.log(each);
-    // }
-    const test = "diet: 'balanced'"
 
+    // api call
     useEffect( () => {
         setTimeout( () => {
             axios({
@@ -49,39 +52,35 @@ export default function ApiCall(props) {
                 diet: props.params.lowSodium.value,
                 },
             }).then( (apiData) => {
-                setRecipes(apiData.data.hits)
-                setShowRecipe(true)
-                setShowMore(apiData.data._links.next.href)
+                setRecipes(apiData.data.hits);
+                setShowRecipeCard(false);
+                setShowSaved(false);
+                setShowMore(apiData.data._links.next.href);
             }).catch( (err) => {
                 setError(true);
-                axios({
-                    url: 'https://api.edamam.com/api/recipes/v2?type=public&app_id=12a553b5&app_key=6243134e8b4229cae7ecfea70b2a1bb1&diet=balanced&random=true'
-                }).then( (apiData) => {
-                    setRecipes(apiData.data.hits)
-                    setShowRecipe(true)
-                })
             })
         }, 10)
     }, [props]);
 
-
+    // when user clicks on a seached recipe
     const getClickedItemInfo = (e) => {
         setDisplay(e.target.parentElement.id)
-        setShowRecipe(!showRecipe)
+        setShowRecipeCard(true)
     };
 
-    
+    // when user clicks on "back" when viewing a recipe
     const getBackClick = (e) => {
-        setShowRecipe(!showRecipe)
+        setShowRecipeCard(false)
     };
 
+    // when user clicks on "more"
     const handleClick = () => {
         window.scrollTo(0, 0);
         axios({
                 url: showMore
             }).then( (apiData) => {
                 setRecipes(apiData.data.hits)
-                setShowRecipe(true)
+                setShowRecipeCard(false)
                 if (apiData.data._links.next.href){
                     setShowMore(apiData.data._links.next.href)
                 } else {
@@ -90,38 +89,115 @@ export default function ApiCall(props) {
             }).catch( (err) => {
                 setError(true);
             })
-    }
+    };
 
     const handleClickError = () => {
         setError(false)
+    };
+
+    const handleClickBookmark = () =>{
+        setShowSaved(!showSaved) 
+        setShowRecipeCard(false)
     }
 
+    // pushing data to firebase
+    const getSaveClick = () => {
+        console.log('saved');
+        console.log(display);
+        const database = getDatabase(firebase);
+        const dbRef = ref(database);
+        const index = recipes.findIndex( (recipe) => {
+            if (recipe.recipe.url === display) {
+                return true
+            }
+        });
+        console.log(index);
+        console.log(recipes);
+        console.log(recipes[index]);
+        const save = {};
+        save.label = recipes[index].recipe.label;
+        save.source = recipes[index].recipe.source;
+        save.totalTime = recipes[index].recipe.totalTime;
+        save.image = recipes[index].recipe.image;
+        save.ingredientLines = recipes[index].recipe.ingredientLines;
+        save.url = recipes[index].recipe.url;
+        save.cuisineType = recipes[index].recipe.cuisineType;
+        save.mealType = recipes[index].recipe.mealType;
+        save.dishType = recipes[index].recipe.dishType
+        console.log(save);
+        push(dbRef, save)
+        // push(dbRef, recipes[index]);
+    };
+
+    // call to fatabase
+    useEffect( () => {
+        const database = getDatabase(firebase);
+        const dbRef = ref(database);
+        onValue(dbRef, (res) => {
+            const newState = [];
+            const data = res.val();
+            console.log('FIREBASE DATA!!! ', data);
+            for (let key in data) {
+                newState.push(data[key]);
+            };
+            setSavedRecipes(newState);
+        });
+    }, []);
+    
+    console.log(savedRecipes);
     return(
         <div className='apiCall'> 
             {
                 error ? <ErrorMessage handleClick={ handleClickError }/>: null
             }
-            <h2>Searched Recipes</h2>
+            <div className="bookmark">
+                <h2>
+                    {
+                        showSaved
+                        ? "Saved "
+                        : null
+                    }
+                Recipes</h2>
+                <p className='toggle' onClick={ handleClickBookmark}>
+                    {
+                        showSaved
+                        ? "search"
+                        : "save"
+                    }
+                </p>
+            </div>
             {   
-                showRecipe 
+                !showRecipeCard 
                 ? <div className="galleryContainer">
                     <ul className="galleryWall">
                         {
-                            recipes.map( (recipe) => {
+                            showSaved
+                            ? savedRecipes.map( (savedRecipe) => {
                                 return(
                                     <GalleryItem
+                                        key={savedRecipe.url}
+                                        handleButton={ getClickedItemInfo }
+                                        imgSource={savedRecipe.image}
+                                        title={savedRecipe.label}
+                                        id={savedRecipe.url}
+                                    />
+                                )
+                            })
+                            : recipes.map( (recipe) => {
+                                return(
+                                    <GalleryItem
+                                        key={recipe.recipe.url}
                                         handleButton={ getClickedItemInfo }
                                         imgSource={recipe.recipe.image}
                                         title={recipe.recipe.label}
                                         id={recipe.recipe.url}
-                                        // cuisineType={recipe.recipe.cuisineType}
                                     />
                                 )
                             })
                         }
                     </ul>
                     {
-                    showMore ? <p className='more' onClick={ handleClick } >More</p> : null
+                    showMore && !showSaved ? <p className='more' onClick={ handleClick } >More</p> : null
                     }
                     {/* <p onClick={ handleClick }> {recipes ? 'more': ''}</p> */}
                 </div>
@@ -131,6 +207,7 @@ export default function ApiCall(props) {
                             return(
                                 recipe.recipe.url === display 
                                 ? <Recipe 
+                                    key={recipe.recipe.url}
                                     title={recipe.recipe.label}
                                     featured={recipe.recipe.source}
                                     time={recipe.recipe.totalTime}
@@ -140,7 +217,8 @@ export default function ApiCall(props) {
                                     cuisine={recipe.recipe.cuisineType}
                                     meal={recipe.recipe.mealType}
                                     dish={recipe.recipe.dishType}
-                                    getBackClick={ getBackClick }
+                                    handleClickBack={ getBackClick }
+                                    handleClickSave= { getSaveClick}
                                 />
                                 : null
                             )

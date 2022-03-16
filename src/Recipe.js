@@ -10,7 +10,7 @@ export default function Recipe(props) {
         <div className="recipeContainer">
             <div className="recipe">
                 <div className="back">
-                    <p onClick={ () => props.getBackClick() }>
+                    <p onClick={ () => props.handleClickBack() }>
                         {
                             width > 500 
                             ? 'back'
@@ -54,7 +54,7 @@ export default function Recipe(props) {
                     <a href={`${props.url}`}target="_blank">Full recipe here</a>
                 </div>
             
-                <p className="save">Save for later</p>
+                <p className="save" onClick={ () => props.handleClickSave() }>Save for later</p>
             </div>
         </div>
     )

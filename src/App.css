@@ -75,6 +75,19 @@ p, a, button, input, label, select, option {
   margin-top: 3rem;
 }
 
+.apiCall .bookmark {
+  display: flex;
+  justify-content: space-between;
+}
+
+.apiCall .toggle {
+  margin-right: 2rem;
+  border: 0.5px solid black;
+  border-radius: 15px;
+  padding: 0 0.5rem;
+  cursor: pointer;
+}
+
 .apiCall .galleryWall {
     list-style: none;
     display: flex;
@@ -462,6 +475,12 @@ p, a, button, input, label, select, option {
 }
 }
 
+@media (max-width: 650px){
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
 @media (max-width: 600px) {
   /* Forms.js */
   .checkBoxes .options {
@@ -470,12 +489,11 @@ p, a, button, input, label, select, option {
 }
 
 @media (max-width: 520px) {
+  .apiCall .toggle {
+  margin-right: 0.3rem;
+}
   h3 {
     font-size: 1rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
   }
 
   .galleryLi {

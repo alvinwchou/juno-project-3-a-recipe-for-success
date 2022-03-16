@@ -104,6 +104,7 @@ console.log(form);
                             onChange={handleInputChange}
                             value={form.searchItem}
                             placeholder="search recipes"
+                            required
                             />
                         <button>Search</button>
                     </div>
