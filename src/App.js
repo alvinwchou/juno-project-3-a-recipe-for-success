@@ -6,15 +6,17 @@ import './App.css';
 
 
 function App() {
-  const [searchParams, setSearhParams] = useState({});
+  const [searchParams, setSearchParams] = useState(null);
   console.log(searchParams);
 
   const getSearchParams = (e, filter) => {
     e.preventDefault();
     console.log(filter);
-    setSearhParams(filter);
-    console.log(searchParams);
-    // setSearhParams({...searchParams, dietType: null})
+    setSearchParams(filter);
+    // console.log(searchParams);
+    // setSearchParams({...searchParams, checkbox: diet})
+    // console.log(searchParams);
+    
   };
 
   return (

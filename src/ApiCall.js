@@ -7,6 +7,8 @@ import useWindowDimensions from './useWindowDimensions';
 import ErrorMessage from './ErrorMessage';
 
 export default function ApiCall(props) {
+
+    console.log('apicall ', props);
     const [recipes, setRecipes] = useState([]);
     
     // toggle between searched recipe and each recipe
@@ -24,6 +26,11 @@ export default function ApiCall(props) {
     // for window dimensions
     const { height, width } = useWindowDimensions();
     
+    // for (each in props.diet) {
+    //     console.log(each);
+    // }
+    const test = "diet: 'balanced'"
+
     useEffect( () => {
         setTimeout( () => {
             axios({
@@ -34,7 +41,12 @@ export default function ApiCall(props) {
                 type: 'public',
                 q: props.params.searchItem,
                 mealType: props.params.mealType,
-                diet: null,
+                diet: props.params.balanced.value,
+                diet: props.params.highFiber.value,
+                diet: props.params.highProtein.value,
+                diet: props.params.lowCarb.value,
+                diet: props.params.lowFat.value,
+                diet: props.params.lowSodium.value,
                 },
             }).then( (apiData) => {
                 setRecipes(apiData.data.hits)
