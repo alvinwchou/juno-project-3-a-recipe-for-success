@@ -1,6 +1,4 @@
 //GalleryItem.js
-import { useState } from "react"
-
 
 export default function GalleryItem(props) {
     return(

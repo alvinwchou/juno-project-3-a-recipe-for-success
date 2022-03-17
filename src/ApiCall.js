@@ -10,7 +10,6 @@ import { getDatabase, ref, onValue, push, remove } from 'firebase/database';
 
 export default function ApiCall(props) {
 
-    console.log('apicall ', props);
     const [recipes, setRecipes] = useState([]);
     
     // toggle between searched recipe and each recipe
@@ -29,9 +28,6 @@ export default function ApiCall(props) {
 
     // state for saved recipes
     const [savedRecipes, setSavedRecipes] = useState([]);
-
-    // for window dimensions
-    const { height, width } = useWindowDimensions();
 
     // api call
     useEffect( () => {
@@ -102,8 +98,6 @@ export default function ApiCall(props) {
 
     // save data to firebase
     const getSaveClick = () => {
-        console.log('saved');
-        console.log(display);
         const database = getDatabase(firebase);
         const dbRef = ref(database);
         const index = recipes.findIndex( (recipe) => {
@@ -111,9 +105,6 @@ export default function ApiCall(props) {
                 return true
             }
         });
-        console.log(index);
-        console.log(recipes);
-        console.log(recipes[index]);
         const save = {};
         save.label = recipes[index].recipe.label;
         save.source = recipes[index].recipe.source;
@@ -124,7 +115,6 @@ export default function ApiCall(props) {
         save.cuisineType = recipes[index].recipe.cuisineType;
         save.mealType = recipes[index].recipe.mealType;
         save.dishType = recipes[index].recipe.dishType
-        console.log(save);
         push(dbRef, save)
         // push(dbRef, recipes[index]);
     };
@@ -144,18 +134,14 @@ export default function ApiCall(props) {
         onValue(dbRef, (res) => {
             const newState = [];
             const data = res.val();
-            console.log('FIREBASE DATA!!! ', data);
             for (let propertyName in data) {
-                console.log(`${propertyName}: ${data[propertyName]}`);
                 newState.push({key: propertyName, data: [data[propertyName]]});
             };
-            console.log(newState);
             setSavedRecipes(newState);
 
         });
     }, []);
     
-    console.log(savedRecipes);
     return(
         <div className='apiCall'> 
             {
@@ -173,7 +159,7 @@ export default function ApiCall(props) {
                     {
                         showSaved
                         ? "search"
-                        : "save"
+                        : "saved"
                     }
                 </p>
             </div>

@@ -3,7 +3,6 @@ import useWindowDimensions from './useWindowDimensions';
 // Recipe.js
 
 export default function Recipe(props) {
-    console.log(props.test);
     const { width } = useWindowDimensions();
 
     return(

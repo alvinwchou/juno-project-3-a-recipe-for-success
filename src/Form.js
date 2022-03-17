@@ -1,7 +1,4 @@
 // Form.js
-import useWindowDimensions from './useWindowDimensions';
-
-
 import { useState } from "react"
 
 export default function Form(props) {
@@ -17,7 +14,7 @@ export default function Form(props) {
             lowSodium: {checked: false},
         });
     }, []);
-console.log(form);
+
     // checkboxes
     const [check, setCkeck] = useState({})
     useState( () => {
@@ -30,59 +27,36 @@ console.log(form);
             lowSodium: false,
         });
     }, [])
-    console.log(check);
-
-    // for (const each in check) {
-    //     if (check[each]) {
-    //         setform({ ...form, [each]: [each] });
-    //     }
-    // }
 
     // show filter true or false
     const [showFilter, setShowFilter] = useState(false)
     
     // input text
     const handleInputChange = (e) => {
-        console.log(form);
-        console.log(e.target.value);
         setform({ ...form, searchItem: e.target.value });
-        console.log(form);
     };
     
     // input checkbox
     const handleInputCheckbox = (e) => {
-        console.log('e.target.name', e.target.name);
-        // console.log('True/False??', check[e.target.name]);
-        
-        // setCkeck({...check, [e.target.name]: !check[e.target.name]})
-        // console.log(`state after update should be opposite,${!check[e.target.name]} `, check[e.target.name]);
-        console.log('e.target.checked ', e.target.checked);
         if (e.target.checked) {
-            console.log('its true, update form and change checked to true');
             setform({ ...form, [e.target.name]: {[e.target.name]: e.target.value, checked: true} });
         } else {
-            console.log('its false, update form and change checked to false');
             setform({ ...form, [e.target.name]: {[e.target.name]: null, checked: false} })
         }
-        // setCkeck({ ...check, [e.target.value]: {checked: !check.balanced}})
-        console.log(form);
     }
 
     // select
     const handleSelectChange = (e) => {
-        console.log(e.target.value);
         if (e.target.value === 'anytime') {
             setform({ ...form, mealType: undefined });
         } else {
             setform({ ...form, mealType: e.target.value });
         };
-        console.log(form);
     };
 
     // submit
     const handleSearchSubmit = (e) => {
         props.handleSubmit(e, form);
-        console.log(form);
         setform({ ...form, searchItem: '' });
     };
 
@@ -205,10 +179,7 @@ console.log(form);
                             </div>
                             : null
                         }
-
                     </div>
-
-
                 </form>
             </div>
         </div>
