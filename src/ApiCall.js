@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import GalleryItem from './GalleryItem';
 import Recipe from './Recipe';
-import useWindowDimensions from './useWindowDimensions';
 import ErrorMessage from './ErrorMessage';
 import firebase from './firebase';
 import { getDatabase, ref, onValue, push, remove } from 'firebase/database';
@@ -61,10 +60,8 @@ export default function ApiCall(props) {
     // when user clicks on a seached recipe
     const getClickedItemInfo = (e, removeKey) => {
         if (removeKey) {
-            console.log("THERS A KEY");
             setDisplay(removeKey)
         } else {
-            console.log("no KEY");
             setDisplay(e.target.parentElement.id)
         }
         setShowRecipeCard(true)
