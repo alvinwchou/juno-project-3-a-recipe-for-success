@@ -3,7 +3,7 @@ import useWindowDimensions from './useWindowDimensions';
 // Recipe.js
 
 export default function Recipe(props) {
-
+    console.log(props.test);
     const { width } = useWindowDimensions();
 
     return(
@@ -54,7 +54,11 @@ export default function Recipe(props) {
                     <a href={`${props.url}`}target="_blank">Full recipe here</a>
                 </div>
             
-                <p className="save" onClick={ () => props.handleClickSave() }>Save for later</p>
+                {
+                    props.handleClickSave
+                    ? <p className="save" onClick={ () => props.handleClickSave() }>Save for later</p>
+                    : <p className="save" onClick={ () => props.handleClickRemove(props.remove) }>Remove from saved</p>
+                }
             </div>
         </div>
     )

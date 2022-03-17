@@ -6,7 +6,7 @@ import Recipe from './Recipe';
 import useWindowDimensions from './useWindowDimensions';
 import ErrorMessage from './ErrorMessage';
 import firebase from './firebase';
-import { getDatabase, ref, onValue, push } from 'firebase/database';
+import { getDatabase, ref, onValue, push, remove } from 'firebase/database';
 
 export default function ApiCall(props) {
 
@@ -100,7 +100,7 @@ export default function ApiCall(props) {
         setShowRecipeCard(false)
     }
 
-    // pushing data to firebase
+    // save data to firebase
     const getSaveClick = () => {
         console.log('saved');
         console.log(display);
@@ -129,6 +129,14 @@ export default function ApiCall(props) {
         // push(dbRef, recipes[index]);
     };
 
+    // remove data from firebase
+    const getRemoveClick = (recipeId) => {
+        const database = getDatabase(firebase);
+        const dbRef = ref(database, `/${recipeId}`)
+        remove(dbRef)
+        setShowRecipeCard(false)
+    };
+
     // call to fatabase
     useEffect( () => {
         const database = getDatabase(firebase);
@@ -137,10 +145,13 @@ export default function ApiCall(props) {
             const newState = [];
             const data = res.val();
             console.log('FIREBASE DATA!!! ', data);
-            for (let key in data) {
-                newState.push(data[key]);
+            for (let propertyName in data) {
+                console.log(`${propertyName}: ${data[propertyName]}`);
+                newState.push({key: propertyName, data: [data[propertyName]]});
             };
+            console.log(newState);
             setSavedRecipes(newState);
+
         });
     }, []);
     
@@ -175,11 +186,11 @@ export default function ApiCall(props) {
                             ? savedRecipes.map( (savedRecipe) => {
                                 return(
                                     <GalleryItem
-                                        key={savedRecipe.url}
+                                        key={savedRecipe.key}
                                         handleButton={ getClickedItemInfo }
-                                        imgSource={savedRecipe.image}
-                                        title={savedRecipe.label}
-                                        id={savedRecipe.url}
+                                        imgSource={savedRecipe.data[0].image}
+                                        title={savedRecipe.data[0].label}
+                                        id={savedRecipe.data[0].url}
                                     />
                                 )
                             })
@@ -203,7 +214,29 @@ export default function ApiCall(props) {
                 </div>
                 : <div className="recipeCard">
                     {
-                        recipes.map( (recipe) => {
+                        showSaved
+                        ? savedRecipes.map( (savedRecipe) => {
+                            return(
+                                savedRecipe.data[0].url === display 
+                                ? <Recipe 
+                                    key={savedRecipe.key}
+                                    title={savedRecipe.data[0].label}
+                                    featured={savedRecipe.data[0].source}
+                                    time={savedRecipe.data[0].totalTime}
+                                    imgSorce={savedRecipe.data[0].image}
+                                    ingredients={savedRecipe.data[0].ingredientLines}
+                                    url={savedRecipe.data[0].url}
+                                    cuisine={savedRecipe.data[0].cuisineType}
+                                    meal={savedRecipe.data[0].mealType}
+                                    dish={savedRecipe.data[0].dishType}
+                                    handleClickBack={ getBackClick }
+                                    handleClickRemove= { getRemoveClick }
+                                    remove={savedRecipe.key}
+                                />
+                                : null
+                            )
+                        })
+                        : recipes.map( (recipe) => {
                             return(
                                 recipe.recipe.url === display 
                                 ? <Recipe 
@@ -218,7 +251,7 @@ export default function ApiCall(props) {
                                     meal={recipe.recipe.mealType}
                                     dish={recipe.recipe.dishType}
                                     handleClickBack={ getBackClick }
-                                    handleClickSave= { getSaveClick}
+                                    handleClickSave= { getSaveClick }
                                 />
                                 : null
                             )

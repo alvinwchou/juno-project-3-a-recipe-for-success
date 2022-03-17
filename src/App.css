@@ -80,6 +80,10 @@ p, a, button, input, label, select, option {
   justify-content: space-between;
 }
 
+.apiCall .toggle:hover,
+.apiCall .toggle:focus {
+  background-color: rgb(112, 130, 62);
+}
 .apiCall .toggle {
   margin-right: 2rem;
   border: 0.5px solid black;
@@ -107,6 +111,11 @@ p, a, button, input, label, select, option {
   font-size: 2rem;
   text-decoration: underline;
   margin: 1.5rem;
+}
+
+.apiCall .more:hover,
+.apiCall .more:focus {
+  color: rgb(112, 130, 62);
 }
 
 
@@ -172,6 +181,19 @@ p, a, button, input, label, select, option {
   width: calc(35% - 5px);
   border-radius: 15px;
   margin-right: 5px;
+  border: 0.2px solid black;
+}
+
+.search .searchBar button:hover, 
+.search .searchBar button:focus {
+  background-color: rgb(112, 130, 62);
+}
+
+.search input {
+  border: 1px solid transparent;
+}
+.search input:focus {
+  border: 1px solid rgb(112, 130, 62);
 }
 
 .filter {
@@ -183,8 +205,17 @@ p, a, button, input, label, select, option {
 
 .filter p:first-child {
   text-align: center;
+  cursor: pointer;
 } 
 
+.filter p:first-child:hover,
+.filter p:first-child:focus {
+  color: rgb(112, 130, 62);
+}
+
+.filter input[type="checkbox"] {
+  border: 10px solid black;
+}
 .filter label {
   display: inline-block;
   padding: 0 0.2rem;
@@ -192,11 +223,20 @@ p, a, button, input, label, select, option {
   cursor: pointer;
 }
 
+.filter label:hover {
+  color: rgb(112, 130, 62);
+}
+
 .filter select {
   display: block;
   margin: 0 auto;
   margin-top: 0.4rem;
   cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.filter select:focus {
+  border: 1px solid rgb(112, 130, 62);
 }
 
 .filter input {
@@ -216,16 +256,18 @@ p, a, button, input, label, select, option {
 
 .galleryLi button {
   cursor: pointer;
+  /* border: 7px solid transparent; */
+  border-radius: 15px;
+}
+
+.galleryLi button:hover,
+.galleryLi button:focus {
+  border: 7px solid rgb(112, 130, 62);
 }
 
 
 
 /* Recipe.js  */
-.recipeContainer {
-  /* padding: 50px; */
-
-}
-
 .recipe {
   /* width: 100%; */
   /* margin: 0 auto; */
@@ -285,9 +327,15 @@ p, a, button, input, label, select, option {
   cursor: pointer;
 }
 
+.link a:hover,
+.link a:focus {
+  color: rgb(112, 130, 62)
+}
+
 .recipe .back {
   grid-area: b;
 }
+
 
 .back p {
   cursor: pointer;
@@ -296,9 +344,20 @@ p, a, button, input, label, select, option {
   padding: 0 10px;
 }
 
+.back p:hover,
+.back p:focus {
+  background-color: rgb(112, 130, 62)
+}
+
 .recipe .save {
   grid-area: s;
   text-decoration: underline;
+  cursor: pointer;
+}
+
+.recipe .save:hover,
+.recipe .save:focus {
+  color: rgb(112, 130, 62)
 }
 
 .recipe .imageContainer {
