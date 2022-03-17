@@ -21,15 +21,18 @@ function App() {
 
   return (
     <div className="app">
-      <div className="header">
+      <section className="header">
         <div className="title">
           <h1>A Recipe for Success</h1>
         </div>
         <Form handleSubmit={getSearchParams}/>
-      </div>
-      <div className="main">
+      </section>
+      <section className="main">
         <ApiCall params={searchParams}/>
-      </div>
+      </section>
+      <section className="footer">
+        <p>Created at <a href="https://junocollege.com/">Juno College</a></p>
+      </section>
     </div>
   );
 };

@@ -341,7 +341,6 @@ p, a, button, input, label, select, option {
   justify-content: center;
   align-items: center;
 }
-
 .errorMessage .mesageContainer {
   width: 800px;
   height: 400px;
@@ -353,7 +352,6 @@ p, a, button, input, label, select, option {
   align-items: center;
   border: 2px solid black;
 }
-
 .mesageContainer .textContainer {
   display: flex;
   flex-direction: column;
@@ -362,17 +360,33 @@ p, a, button, input, label, select, option {
   padding: 0 50px;
   background-color: rgba(134, 108, 90, 0.747);
 }
-
 .mesageContainer .textContainer h2 {
   font-family: 'Dancing Script', cursive;
   font-weight: 700;
   font-size: 3rem;
   padding-bottom: 1.5rem;
 }
-
 .mesageContainer .textContainer p {
   padding: 0 50px;
 }
+
+/* footer */
+.footer {
+  text-align: center;
+  padding: 0 5%;
+}
+.footer p {
+  font-size: 0.7rem;
+}
+.footer a {
+  font-size: 0.7rem;
+  color: black;
+}
+.footer a:hover,
+.footer a:focus {
+  color: rgb(112, 130, 62);
+}
+
 
 
 
