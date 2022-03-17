@@ -7,7 +7,6 @@ import './App.css';
 
 function App() {
   const [searchParams, setSearchParams] = useState(null);
-  console.log(searchParams);
 
   const getSearchParams = (e, filter) => {
     e.preventDefault();
