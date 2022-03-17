@@ -11,12 +11,7 @@ function App() {
 
   const getSearchParams = (e, filter) => {
     e.preventDefault();
-    console.log(filter);
     setSearchParams(filter);
-    // console.log(searchParams);
-    // setSearchParams({...searchParams, checkbox: diet})
-    // console.log(searchParams);
-    
   };
 
   return (
@@ -31,7 +26,7 @@ function App() {
         <ApiCall params={searchParams}/>
       </section>
       <section className="footer">
-        <p>Created at <a href="https://junocollege.com/">Juno College</a></p>
+        <p>Created by <a href="https://www.alvinwchou.com/">Alvin Chou</a> at <a href="https://junocollege.com/">Juno College</a></p>
       </section>
     </div>
   );

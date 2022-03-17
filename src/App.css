@@ -211,9 +211,12 @@ p, a, button, input, label, select, option {
   padding: 20px;
   display: inline-block;
 }
+.galleryLi img {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
 .galleryLi button {
   cursor: pointer;
-  /* border: 7px solid transparent; */
   border-radius: 15px;
 }
 .galleryLi button:hover,
@@ -308,7 +311,6 @@ p, a, button, input, label, select, option {
 .recipe .ingredientsContainer {
   grid-area: i;
   width: 90%;
-  border: 1px solid red;
 }
 .recipe .ingredientsContainer ul {
   background-color: rgb(134, 108, 90);
@@ -374,6 +376,9 @@ p, a, button, input, label, select, option {
 .footer {
   text-align: center;
   padding: 0 5%;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
 }
 .footer p {
   font-size: 0.7rem;

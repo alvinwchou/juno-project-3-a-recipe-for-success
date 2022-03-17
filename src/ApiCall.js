@@ -59,13 +59,19 @@ export default function ApiCall(props) {
     }, [props]);
 
     // when user clicks on a seached recipe
-    const getClickedItemInfo = (e) => {
-        setDisplay(e.target.parentElement.id)
+    const getClickedItemInfo = (e, removeKey) => {
+        if (removeKey) {
+            console.log("THERS A KEY");
+            setDisplay(removeKey)
+        } else {
+            console.log("no KEY");
+            setDisplay(e.target.parentElement.id)
+        }
         setShowRecipeCard(true)
     };
 
     // when user clicks on "back" when viewing a recipe
-    const getBackClick = (e) => {
+    const getBackClick = () => {
         setShowRecipeCard(false)
     };
 
@@ -177,6 +183,7 @@ export default function ApiCall(props) {
                                         imgSource={savedRecipe.data[0].image}
                                         title={savedRecipe.data[0].label}
                                         id={savedRecipe.data[0].url}
+                                        remove={savedRecipe.key}
                                     />
                                 )
                             })
@@ -203,7 +210,7 @@ export default function ApiCall(props) {
                         showSaved
                         ? savedRecipes.map( (savedRecipe) => {
                             return(
-                                savedRecipe.data[0].url === display 
+                                savedRecipe.key === display 
                                 ? <Recipe 
                                     key={savedRecipe.key}
                                     title={savedRecipe.data[0].label}
