@@ -15,38 +15,30 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
     padding: 0;
     line-height: 1.4rem;
 }
-
 html {
     font-size: 125%;
     background-color: aliceblue;
 }
-
 img {
     width: 100%;
     display: block;
 }
-
-
 a {
   text-decoration: none;
 }
-
 h1 {
 font-family: 'Dancing Script', cursive;
 font-weight: 700;
 font-size: 4rem;
 text-align: center;
 line-height: 4rem;
-
 }
-
 h2 {
   font-family: 'Comfortaa', cursive;
   font-weight: 700;
   font-size: 2.5rem;
   padding: 0 15px;
 }
-
 h3 {
   font-family: 'Comfortaa', cursive;
   font-weight: 700;
@@ -56,13 +48,11 @@ h3 {
   text-align: center;
   line-height: 2rem;
 }
-
 p, a, button, input, label, select, option {
   font-family: 'Comfortaa', cursive;
   font-weight: 700;
   font-size: 1rem;
 }
-
 
 /* ApiCall.js */
 .main {
@@ -70,16 +60,13 @@ p, a, button, input, label, select, option {
   margin-left: auto;
   /* min-height: 100vh; */
 }
-
 .apiCall {
   margin-top: 3rem;
 }
-
 .apiCall .bookmark {
   display: flex;
   justify-content: space-between;
 }
-
 .apiCall .toggle:hover,
 .apiCall .toggle:focus {
   background-color: rgb(112, 130, 62);
@@ -91,7 +78,6 @@ p, a, button, input, label, select, option {
   padding: 0 0.5rem;
   cursor: pointer;
 }
-
 .apiCall .galleryWall {
     list-style: none;
     display: flex;
@@ -100,11 +86,9 @@ p, a, button, input, label, select, option {
     padding: 0 5%;
     margin-top: 2rem;
 }
-
 .apiCall .recipeCard {
   margin-top: 2rem;
 }
-
 .apiCall .more {
   text-align: center;
   cursor: pointer;
@@ -112,13 +96,10 @@ p, a, button, input, label, select, option {
   text-decoration: underline;
   margin: 1.5rem;
 }
-
 .apiCall .more:hover,
 .apiCall .more:focus {
   color: rgb(112, 130, 62);
 }
-
-
 
 /* header */
 .header {
@@ -131,16 +112,12 @@ p, a, button, input, label, select, option {
   top: 0;
   bottom: 0;
 }
-
 .header .title {
   height: 300px;
 }
-
 .header .title h1 {
   background-color: rgba(112, 130, 62, 0.747);
 }
-
-
 
 /* Form.js */
 .search{
@@ -150,25 +127,21 @@ p, a, button, input, label, select, option {
   border-radius: 10px;
   background-color: rgb(224, 180, 74);
 }
-
 .search .flexContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem 0;
 }
-
 .search .flexContainer form {
   width: 90%;
   height: 50%;
 }
-
 .search .searchBar {
   background-color: white;
   border-radius: 10px;
   border: 0.5 solid black;
 }
-
 .search .searchBar input {
   width: calc(65% - 10px);
   margin: 5px;
@@ -183,38 +156,29 @@ p, a, button, input, label, select, option {
   margin-right: 5px;
   border: 0.2px solid black;
 }
-
 .search .searchBar button:hover, 
 .search .searchBar button:focus {
   background-color: rgb(112, 130, 62);
 }
-
 .search input {
   border: 1px solid transparent;
 }
 .search input:focus {
   border: 1px solid rgb(112, 130, 62);
 }
-
 .filter {
   border: 10px solid darkolivegreen;
   padding: 0.5rem 0.5rem; 
   border-radius: 20px;
   margin-top: 1rem;
 }
-
 .filter p:first-child {
   text-align: center;
   cursor: pointer;
 } 
-
 .filter p:first-child:hover,
 .filter p:first-child:focus {
   color: rgb(112, 130, 62);
-}
-
-.filter input[type="checkbox"] {
-  border: 10px solid black;
 }
 .filter label {
   display: inline-block;
@@ -222,11 +186,9 @@ p, a, button, input, label, select, option {
   margin: 0.4rem;
   cursor: pointer;
 }
-
 .filter label:hover {
   color: rgb(112, 130, 62);
 }
-
 .filter select {
   display: block;
   margin: 0 auto;
@@ -234,16 +196,12 @@ p, a, button, input, label, select, option {
   cursor: pointer;
   border: 1px solid transparent;
 }
-
 .filter select:focus {
   border: 1px solid rgb(112, 130, 62);
 }
-
 .filter input {
   cursor: pointer;
 }
-
-
 
 /* GalleryItem.js */
 .galleryLi {
@@ -253,24 +211,18 @@ p, a, button, input, label, select, option {
   padding: 20px;
   display: inline-block;
 }
-
 .galleryLi button {
   cursor: pointer;
   /* border: 7px solid transparent; */
   border-radius: 15px;
 }
-
 .galleryLi button:hover,
 .galleryLi button:focus {
   border: 7px solid rgb(112, 130, 62);
 }
 
-
-
 /* Recipe.js  */
 .recipe {
-  /* width: 100%; */
-  /* margin: 0 auto; */
   padding: 25px;
   margin: 25px;
   border-radius: 15px;
@@ -290,93 +242,74 @@ p, a, button, input, label, select, option {
   gap: 18px;
   overflow-y: 'auto',
 }
-
 .recipe > h3 {
   grid-area: h;
   text-align: center;
 }
-
 .recipe .feat {
   grid-area: f;
   text-align: center;
 }
-
 .recipe .cuisine {
   grid-area: c;
 }
-
 .recipe .meal {
   grid-area: m;
 }
-
 .recipe .dish {
   grid-area: d;
 }
-
 .recipe .time {
   grid-area: t;
 }
-
 .recipe .link {
   grid-area: l;
   text-align: center;
 }
-
 .link a {
   color: black;
   cursor: pointer;
 }
-
 .link a:hover,
 .link a:focus {
   color: rgb(112, 130, 62)
 }
-
 .recipe .back {
   grid-area: b;
 }
-
-
 .back p {
   cursor: pointer;
   border: 0.5px solid black;
   border-radius: 15px;
   padding: 0 10px;
 }
-
 .back p:hover,
 .back p:focus {
   background-color: rgb(112, 130, 62)
 }
-
 .recipe .save {
   grid-area: s;
   text-decoration: underline;
   cursor: pointer;
 }
-
 .recipe .save:hover,
 .recipe .save:focus {
   color: rgb(112, 130, 62)
 }
-
 .recipe .imageContainer {
   grid-area: p;
   display: flex;
   justify-content: center;
   padding-top: 30px;
 }
-
 .recipe .imageContainer img{
   width: 60%;
 }
-
 .recipe .ingredientsContainer {
   grid-area: i;
   width: 90%;
   border: 1px solid red;
 }
-
 .recipe .ingredientsContainer ul {
   background-color: rgb(134, 108, 90);
   border-radius: 15px;
@@ -385,15 +318,12 @@ p, a, button, input, label, select, option {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
 }
-
 .recipe .ingredientsContainer li {
   margin: 0.5rem;
 }
-
 .recipe .caps {
   text-transform: capitalize;
 }
-
 .back p {
   display: inline-block;
 }
@@ -448,7 +378,6 @@ p, a, button, input, label, select, option {
 
 /* media queries */
 @media (max-width: 1100px) {
-
   /* header */
   .header {
     width: auto;
@@ -457,9 +386,7 @@ p, a, button, input, label, select, option {
     background-repeat: no-repeat;
     background-position: top center;
     background-size: cover;
-
   }
-
   .header .title {
   height: auto;
   }
@@ -468,16 +395,13 @@ p, a, button, input, label, select, option {
   .search{
     margin-bottom: 2rem;
   }
-
   .filter p{
     cursor: pointer;
   }
-
   .checkBoxes{
     display: flex;
     flex-wrap: wrap;
   }
-
   .checkBoxes .options {
     width: calc(100%/3);
   }
@@ -511,7 +435,6 @@ p, a, button, input, label, select, option {
   p , a {
     font-size: 0.7rem;
   }
-
   /* Recipe.js */
   .recipe{
     border: 5px solid green;
@@ -524,11 +447,9 @@ p, a, button, input, label, select, option {
                          "l l l s s s"
                          "i i i i i i";
   }
-
   .recipe .save {
     text-align: center; 
 }
-
   .recipe .ingredientsContainer {
     margin: 0 auto;
 }
@@ -550,31 +471,19 @@ p, a, button, input, label, select, option {
 @media (max-width: 520px) {
   .apiCall .toggle {
   margin-right: 0.3rem;
-}
+  }
   h3 {
     font-size: 1rem;
   }
-
   .galleryLi {
     width: calc(100%/3);
     height: 200px;
   }
-
   /* Error.js */
   .mesageContainer .textContainer {
   height: 55%;
+  }
+  .mesageContainer .textContainer p {
+    padding: 0 20px;
+  }
 }
-
-.mesageContainer .textContainer p {
-  padding: 0 20px;
-}
-
-}
-
-
-
-*{border: 0.2px solid red}
-
-
-
-
